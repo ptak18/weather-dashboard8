@@ -12,9 +12,26 @@ fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&un
     const humidity = data.list[0].main.humidity
     const temp = data.list[0].main.temp
     console.log(data.list[0])
+
+    const todayEl = document.getElementById("today")
+    const tempEl = document.createElement("p")
+    const windEl = document.createElement("p")
+    const humEl = document.createElement("p")
+    tempEl.textContent = `temp: ${temp}`
+    windEl.textContent = `wind: ${windspeed}`
+    humEl.textContent = `hum: ${humidity}`
+
+    todayEl.appendChild(tempEl)
+    todayEl.appendChild(windEl)
+    todayEl.appendChild(humEl)
+
+    
+
+
 })
 .catch(error => console.error(error));
-   
+  
+//  todo for 5 days:
 // When a user views the current weather conditions for that city they are presented with:
 //     * The city name
 //     * The date
