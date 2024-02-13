@@ -5,6 +5,11 @@ const lon= 50
 const URL= `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${APIkey}`
 console.log(URL)
 
+
+
+function getData(lat,lon){
+
+
 fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${APIkey}`)
 .then(response => response.json())
 .then(data => {
@@ -25,13 +30,32 @@ fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&un
     todayEl.appendChild(windEl)
     todayEl.appendChild(humEl)
 
-    
-
 
 })
 .catch(error => console.error(error));
-  
+}
+
+function getCity (cityName){
+    const URL =`http://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=5&appid=${APIkey}`
+
+    fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${APIkey}`)
+.then(response => response.json())
+.then(data => {
+    
+    console.log(data)
+const lon = data[0].lon
+const lat = data[0].lat
+getData(lat,lon) 
+
+//call get data with tghe longitude and latitude from the response     
+})
+}
+
+
 //  todo for 5 days:
+//event listenr that listens for any submissions
+//which will check value for unput box and will call the function "get city" 
+
 // When a user views the current weather conditions for that city they are presented with:
 //     * The city name
 //     * The date
